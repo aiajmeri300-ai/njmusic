@@ -1,454 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Resume to PDF Generator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- PDF Library (html2pdf.js) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background: #f3f4f6;
-      color: #111827;
-    }
-
-    .container {
-      display: flex;
-      gap: 16px;
-      padding: 16px;
-      align-items: flex-start;
-    }
-
-    /* Left form */
-    .form-wrapper {
-      flex: 1;
-      background: white;
-      padding: 16px;
-      border-radius: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-      max-height: 100vh;
-      overflow-y: auto;
-    }
-
-    .form-wrapper h2 {
-      margin-top: 0;
-      margin-bottom: 8px;
-    }
-
-    .form-group {
-      margin-bottom: 10px;
-    }
-
-    label {
-      font-size: 13px;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 6px 8px;
-      font-size: 13px;
-      border-radius: 4px;
-      border: 1px solid #d1d5db;
-    }
-
-    textarea {
-      min-height: 60px;
-      resize: vertical;
-    }
-
-    .two-col {
-      display: flex;
-      gap: 8px;
-    }
-
-    button {
-      cursor: pointer;
-      border: none;
-      border-radius: 4px;
-      padding: 8px 12px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .btn-primary {
-      background: #2563eb;
-      color: white;
-    }
-
-    .btn-secondary {
-      background: #e5e7eb;
-      color: #111827;
-    }
-
-    .btn-row {
-      display: flex;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    /* Right resume preview (A4 layout) */
-    .preview-wrapper {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-    }
-
-    #resume-preview {
-      background: white;
-      width: 210mm;       /* A4 width */
-      min-height: 297mm;  /* A4 height */
-      padding: 18mm;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
-      color: #111827;
-    }
-
-    /* Resume styles */
-    .header {
-      border-bottom: 2px solid #e5e7eb;
-      padding-bottom: 8px;
-      margin-bottom: 8px;
-    }
-
-    .name {
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-    }
-
-    .title {
-      font-size: 14px;
-      color: #4b5563;
-      margin-top: 2px;
-    }
-
-    .contact {
-      font-size: 11px;
-      color: #4b5563;
-      margin-top: 6px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .section {
-      margin-top: 12px;
-    }
-
-    .section-title {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #374151;
-      border-bottom: 1px solid #e5e7eb;
-      padding-bottom: 3px;
-      margin-bottom: 4px;
-    }
-
-    .section-body {
-      font-size: 11px;
-      color: #111827;
-    }
-
-    .item {
-      margin-bottom: 6px;
-    }
-
-    .item-header {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 600;
-    }
-
-    .item-sub {
-      font-size: 10px;
-      color: #4b5563;
-    }
-
-    ul {
-      margin: 3px 0 0 16px;
-      padding: 0;
-      font-size: 11px;
-    }
-
-    .skills-list span {
-      display: inline-block;
-      background: #e5e7eb;
-      padding: 2px 6px;
-      border-radius: 999px;
-      font-size: 10px;
-      margin: 2px;
-    }
-
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-      }
-      #resume-preview {
-        width: 100%;
-        min-height: auto;
-      }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NJ MUSIC STUDIO - Official Music Website</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0e0e0e;
+            color: white;
+        }
+        header {
+            background: #111;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+            letter-spacing: 2px;
+        }
+        nav a {
+            margin-left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .hero {
+            height: 90vh;
+            background: url('YOUR-BANNER-IMAGE.jpg') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 48px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        }
+        .section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: auto;
+        }
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: #1c1c1c;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .card h3 {
+            margin-top: 15px;
+            font-size: 20px;
+        }
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+        }
+        input, textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+        }
+        button {
+            padding: 12px;
+            background: #ff4f4f;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        footer {
+            background: #111;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <!-- LEFT: FORM -->
-    <div class="form-wrapper">
-      <h2>Resume Details</h2>
-      <p style="font-size:12px;margin-top:0;color:#6b7280;">
-        Details bharo, right side preview dekho, phir “Download PDF” dabao. 👇
-      </p>
-      <form id="resume-form">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input id="f-name" placeholder="" required />
+    <header>
+        <h1>NJ MUSIC STUDIO</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#music">Music</a>
+            <a href="#videos">Videos</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h2>Welcome to My Official Music Website</h2>
+    </section>
+
+    <section class="section" id="music">
+        <h2>Latest Music</h2>
+        <div class="music-grid">
+            <div class="card">
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/5Sf3P4sYGeNvkb0b5zFlnN?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <h3>Latest Release</h3>
+            </div>
         </div>
+    </section>
 
-        <div class="form-group">
-          <label>Headline / Job Title</label>
-          <input id="f-title" placeholder="" />
+    <section class="section" id="videos">
+        <h2>Music Videos</h2>
+        <div class="music-grid">
+            <div class="card">
+               <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Kepqxzho2EQ?si=AXA_L8cdSXHHDNYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <h3>Video Title 1</h3>
+            </div>
+            <div class="card">
+                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Kepqxzho2EQ?si=AXA_L8cdSXHHDNYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <h3>Video Title 2</h3>
+            </div>
         </div>
-
-        <div class="form-group two-col">
-          <div style="flex:1;">
-            <label>Email</label>
-            <input id="f-email" placeholder="you@example.com" />
-          </div>
-          <div style="flex:1;">
-            <label>Phone</label>
-            <input id="f-phone" placeholder="+91-xxxxxxxxxx" />
-          </div>
+    </section>
+   <section class="section" id="videos">
+        <h2>Music Videos</h2>
+        <div class="music-grid">
+            <div class="card">
+             <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Kepqxzho2EQ?si=AXA_L8cdSXHHDNYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <h3>Video Title 1</h3>
+            </div>
+            <div class="card">
+               <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Kepqxzho2EQ?si=AXA_L8cdSXHHDNYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <h3>Video Title 2</h3>
+            </div>
         </div>
+    </section>
+    <section class="section contact" id="contact">
+        <h2>Contact</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <textarea rows="5" placeholder="Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
 
-        <div class="form-group">
-          <label>Location</label>
-          <input id="f-location" placeholder="" />
-        </div>
-
-        <div class="form-group">
-          <label>Website / Portfolio / LinkedIn</label>
-          <input id="f-website" placeholder="https://your-portfolio.com" />
-        </div>
-
-        <div class="form-group">
-          <label>Summary / Objective</label>
-          <textarea id="f-summary" placeholder="Short summary about you..."></textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Skills (comma separated)</label>
-          <input id="f-skills" placeholder="" />
-        </div>
-
-        <div class="form-group">
-          <label>Experience (format: Company | Role | Years | Description lines)</label>
-          <textarea id="f-experience" placeholder="
-"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Education (format: Degree | Institute | Years | Extra info)</label>
-          <textarea id="f-education" placeholder=""></textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Projects (format: Project Name | Role | Year | Description)</label>
-          <textarea id="f-projects" placeholder=""></textarea>
-        </div>
-
-        <div class="btn-row">
-          <button type="button" class="btn-secondary" id="preview-btn">Update Preview</button>
-          <button type="button" class="btn-primary" id="pdf-btn">Download PDF</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- RIGHT: PREVIEW (Yahi se PDF banega) -->
-    <div class="preview-wrapper">
-      <div id="resume-preview">
-        <div class="header">
-          <div class="name" id="pv-name">Your Name</div>
-          <div class="title" id="pv-title">Your Title / Role</div>
-          <div class="contact">
-            <span id="pv-email">you@example.com</span>
-            <span id="pv-phone">+91-0000000000</span>
-            <span id="pv-location">City, Country</span>
-            <span id="pv-website">your-website.com</span>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title">Profile</div>
-          <div class="section-body" id="pv-summary">
-            Short summary about you will appear here.
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title">Skills</div>
-          <div class="section-body skills-list" id="pv-skills">
-            <span>Skill 1</span><span>Skill 2</span><span>Skill 3</span>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title">Experience</div>
-          <div class="section-body" id="pv-experience">
-            <!-- Experience items will be injected here -->
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title">Education</div>
-          <div class="section-body" id="pv-education">
-            <!-- Education items will be injected here -->
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title">Projects</div>
-          <div class="section-body" id="pv-projects">
-            <!-- Project items will be injected here -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function textToBulletList(text) {
-      const lines = text
-        .split(/\r?\n/)
-        .map(l => l.trim())
-        .filter(l => l.length > 0);
-
-      if (!lines.length) return "";
-
-      return "<ul>" + lines.map(line => `<li>${line}</li>`).join("") + "</ul>";
-    }
-
-    function parseBlock(text, targetId) {
-      const container = document.getElementById(targetId);
-      container.innerHTML = "";
-
-      const lines = text
-        .split(/\r?\n/)
-        .map(l => l.trim())
-        .filter(l => l.length > 0);
-
-      lines.forEach(line => {
-        // Format: A | B | C | rest
-        const parts = line.split("|").map(p => p.trim());
-        const itemDiv = document.createElement("div");
-        itemDiv.className = "item";
-
-        const headerDiv = document.createElement("div");
-        headerDiv.className = "item-header";
-
-        const left = document.createElement("div");
-        const right = document.createElement("div");
-        right.style.fontSize = "10px";
-        right.style.color = "#4b5563";
-
-        left.textContent = parts[0] || "";
-        right.textContent = parts[2] || ""; // usually years
-
-        headerDiv.appendChild(left);
-        headerDiv.appendChild(right);
-        itemDiv.appendChild(headerDiv);
-
-        if (parts[1]) {
-          const sub = document.createElement("div");
-          sub.className = "item-sub";
-          sub.textContent = parts[1];
-          itemDiv.appendChild(sub);
-        }
-
-        if (parts[3]) {
-          const desc = document.createElement("div");
-          desc.innerHTML = textToBulletList(parts[3]);
-          itemDiv.appendChild(desc);
-        }
-
-        container.appendChild(itemDiv);
-      });
-    }
-
-    function updatePreview() {
-      const name = document.getElementById("f-name").value || "Your Name";
-      const title = document.getElementById("f-title").value || "Your Title";
-      const email = document.getElementById("f-email").value || "";
-      const phone = document.getElementById("f-phone").value || "";
-      const location = document.getElementById("f-location").value || "";
-      const website = document.getElementById("f-website").value || "";
-      const summary = document.getElementById("f-summary").value || "";
-
-      const skills = document.getElementById("f-skills").value || "";
-      const exp = document.getElementById("f-experience").value || "";
-      const edu = document.getElementById("f-education").value || "";
-      const proj = document.getElementById("f-projects").value || "";
-
-      document.getElementById("pv-name").textContent = name;
-      document.getElementById("pv-title").textContent = title;
-      document.getElementById("pv-email").textContent = email;
-      document.getElementById("pv-phone").textContent = phone;
-      document.getElementById("pv-location").textContent = location;
-      document.getElementById("pv-website").textContent = website;
-
-      document.getElementById("pv-summary").textContent =
-        summary || "Short summary about you will appear here.";
-
-      // Skills
-      const skillsContainer = document.getElementById("pv-skills");
-      skillsContainer.innerHTML = "";
-      skills.split(",")
-        .map(s => s.trim())
-        .filter(s => s.length > 0)
-        .forEach(skill => {
-          const span = document.createElement("span");
-          span.textContent = skill;
-          skillsContainer.appendChild(span);
-        });
-
-      // Experience / Education / Projects
-      parseBlock(exp, "pv-experience");
-      parseBlock(edu, "pv-education");
-      parseBlock(proj, "pv-projects");
-    }
-
-    document.getElementById("preview-btn").addEventListener("click", updatePreview);
-
-    // Auto-update once at load
-    updatePreview();
-
-    document.getElementById("pdf-btn").addEventListener("click", function () {
-      // PDF banane se pehle preview update kar do
-      updatePreview();
-
-      const element = document.getElementById("resume-preview");
-      const opt = {
-        margin:       0.3,
-        filename:     'resume.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-      };
-
-      html2pdf().from(element).set(opt).save();
-    });
-  </script>
+    <footer>
+        © 2025 NJ MUSIC STUDIO. All Rights Reserved.
+    </footer>
 </body>
 </html>
